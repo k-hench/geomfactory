@@ -18,6 +18,4 @@ devtools::install_github("k-hench/geomfactory")
 
 ------------------------
 
-<center>
-<img src = "vignettes/logo.svg" width = 20% />
-</center>
+<img src="vignettes/logo.svg" align="center" alt="" width="20%" />
