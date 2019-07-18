@@ -10,3 +10,14 @@ To install **geomfactory** please run:
 ```
 devtools::install_github("k-hench/geomfactory")
 ```
+
+<center>
+<img src = "docs/articles/geomfactory_files/figure-html/unnamed-chunk-7-1.png" width = 80% />
+</center>
+
+
+------------------------
+
+<center>
+<img src = "vignettes/logo.svg" width = 20% />
+</center>
