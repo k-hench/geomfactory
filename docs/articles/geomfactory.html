@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">geomfactory</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.0</span>
       </span>
     </div>
 
@@ -91,21 +91,22 @@
 <p>The aim is <em>NOT to overlay</em> several unrelated data sets, but to use the ggplot facet functions to put them in the same context:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(geomfactory)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ls">ls</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.environment">as.environment</a></span>(<span class="st">"package:geomfactory"</span>))</a></code></pre></div>
-<pre><code>## [1] "factory_geom_line"</code></pre>
-<p>After loading the package, currently there is only one new function: <code><a href="../reference/factory_geom_line.html">factory_geom_line()</a></code>. This is our <em>geom_factory</em> that will create new <code>geom_line()</code> variations that will work on a alternative color scale. The function also creates according scales <code>scale_*()</code> (one discrete, one continuous) as well as the needed color-bar guide <code>guide_colourbar_*()</code>.</p>
+<pre><code>## [1] "factory_geom_line"  "factory_geom_point"</code></pre>
+<p>After loading the package, currently there are only two new functions: <code><a href="../reference/factory_geom_line.html">factory_geom_line()</a></code> &amp; <code><a href="../reference/factory_geom_point.html">factory_geom_point()</a></code>. This are our <em>geom_factorys</em> that will create new <code>geom_line()</code> (or <code>geom_point()</code>) variations that will work on a alternative color scale. The function also creates according scales <code>scale_*()</code> (one discrete, one continuous) as well as the needed color-bar guide <code>guide_colourbar_*()</code>.</p>
 <p>(<em>This might expand in the future to also include other geoms.</em>)</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/factory_geom_line.html">factory_geom_line</a></span>(<span class="st">'var2'</span>)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ls">ls</a></span>(.GlobalEnv)</a></code></pre></div>
 <pre><code>## [1] "geom_line_var2"        "GeomLine_var2"         "guide_colourbar_var2" 
 ## [4] "scale_var2_continuous" "scale_var2_manual"</code></pre>
 <p>We can do this for as may additional color scales as we need (using a different name for each scale).</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/factory_geom_line.html">factory_geom_line</a></span>(<span class="st">'var3'</span>)</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/factory_geom_point.html">factory_geom_point</a></span>(<span class="st">'var3'</span>)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ls">ls</a></span>(.GlobalEnv)</a></code></pre></div>
-<pre><code>##  [1] "geom_line_var2"        "GeomLine_var2"        
-##  [3] "geom_line_var3"        "GeomLine_var3"        
-##  [5] "guide_colourbar_var2"  "guide_colourbar_var3" 
-##  [7] "scale_var2_continuous" "scale_var2_manual"    
-##  [9] "scale_var3_continuous" "scale_var3_manual"</code></pre>
+<pre><code>##  [1] "geom_line_var2"          "GeomLine_var2"          
+##  [3] "geom_point_var3"         "GeomPoint_var3"         
+##  [5] "guide_colourbar_var2"    "guide_colourbar_var3"   
+##  [7] "scale_var2_continuous"   "scale_var2_manual"      
+##  [9] "scale_var3_c_continuous" "scale_var3_c_manual"    
+## [11] "scale_var3_f_continuous" "scale_var3_f_manual"</code></pre>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
@@ -144,15 +145,21 @@
 <a class="sourceLine" id="cb8-13" data-line-number="13"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">'var3'</span>,<span class="dt">value =</span> <span class="st">'y'</span>,<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-14" data-line-number="14"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">var =</span> <span class="st">'var3'</span>)</a></code></pre></div>
 <p>Finally, we can plot the three data sets in context while keeping their super important color scheme. We can also highlight the <em>crazy outlier</em> of the class <strong>c</strong> within <strong>var3</strong>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ggplot</span>(data1, <span class="kw">aes</span>(x,y))<span class="op">+</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">-1.08</span>, <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/rgb">rgb</a></span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,.<span class="dv">5</span>))<span class="op">+</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> var1))<span class="op">+</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_line_var2</span>(<span class="dt">data =</span> data2, <span class="kw">aes</span>(<span class="dt">var2 =</span> var2, <span class="dt">group =</span> var2))<span class="op">+</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_line_var3</span>(<span class="dt">data =</span> data3, <span class="kw">aes</span>(<span class="dt">var3 =</span> var3))<span class="op">+</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_var3_manual</span>(<span class="dt">values =</span> RColorBrewer<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/RColorBrewer/topics/ColorBrewer">brewer.pal</a></span>(<span class="dv">3</span>,<span class="st">'Set1'</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">var2 =</span> <span class="kw">guide_colourbar_var2</span>(<span class="dt">barheight =</span> <span class="kw">unit</span>(<span class="dv">9</span>,<span class="st">'pt'</span>)))<span class="op">+</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="st">  </span><span class="kw">facet_grid</span>(var<span class="op">~</span>.,<span class="dt">scales =</span> <span class="st">'free'</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">'bottom'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">clr_<span class="dv">1</span> &lt;-<span class="st"> </span>viridis<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/viridis/topics/reexports">viridis</a></span>(<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">clr_<span class="dv">3</span> &lt;-<span class="st"> </span>RColorBrewer<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/RColorBrewer/topics/ColorBrewer">brewer.pal</a></span>(<span class="dv">3</span>,<span class="st">'Set1'</span>)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw">ggplot</span>(data1, <span class="kw">aes</span>(x,y))<span class="op">+</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">-1.08</span>, <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/rgb">rgb</a></span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,.<span class="dv">5</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> var1))<span class="op">+</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_line_var2</span>(<span class="dt">data =</span> data2, <span class="kw">aes</span>(<span class="dt">var2 =</span> var2, <span class="dt">group =</span> var2))<span class="op">+</span></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point_var3</span>(<span class="dt">data =</span> data3, <span class="kw">aes</span>(<span class="dt">var3_f =</span> var3), </a>
+<a class="sourceLine" id="cb9-9" data-line-number="9">                  <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">size =</span> <span class="fl">2.5</span>,<span class="dt">alpha =</span> <span class="fl">.8</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> clr_<span class="dv">1</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_var3_f_manual</span>(<span class="dt">values =</span> clr_<span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">var2 =</span> <span class="kw">guide_colourbar_var2</span>(<span class="dt">barheight =</span> <span class="kw">unit</span>(<span class="dv">9</span>,<span class="st">'pt'</span>)),</a>
+<a class="sourceLine" id="cb9-13" data-line-number="13">         <span class="dt">var3_f =</span> <span class="kw">guide_legend</span>(<span class="dt">override.aes =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">fill =</span> clr_<span class="dv">3</span>)))<span class="op">+</span></a>
+<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="st">  </span><span class="kw">facet_grid</span>(var<span class="op">~</span>.,<span class="dt">scales =</span> <span class="st">'free'</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb9-15" data-line-number="15"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">'bottom'</span>)</a></code></pre></div>
 <p><img src="geomfactory_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 <hr>
 <center>

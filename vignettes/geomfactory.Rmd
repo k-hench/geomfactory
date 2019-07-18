@@ -31,9 +31,12 @@ library(geomfactory)
 ls(as.environment("package:geomfactory"))
 ```
 
-After loading the package, currently there is only one new function: `factory_geom_line()`.
-This is our *geom_factory* that will create new `geom_line()` variations that will work on a alternative color scale.
-The function also creates according scales `scale_*()` (one discrete, one continuous) as well as the needed color-bar guide `guide_colourbar_*()`.
+After loading the package, currently there are only two new functions:
+`factory_geom_line()` & `factory_geom_point()`.
+This are our *geom_factorys* that will create new `geom_line()` (or `geom_point()`)
+variations that will work on a alternative color scale.
+The function also creates according scales `scale_*()` (one discrete, one continuous)
+as well as the needed color-bar guide `guide_colourbar_*()`.
 
 (*This might expand in the future to also include other geoms.*)
 
@@ -46,7 +49,7 @@ We can do this for as may additional color scales as we need (using a different 
 
 
 ```{r, message = FALSE}
-factory_geom_line('var3')
+factory_geom_point('var3')
 ls(.GlobalEnv)
 ```
 
@@ -54,7 +57,8 @@ ls(.GlobalEnv)
 
 Now let see the new color scales in action:
 
-First, we create three data sets that all refer to the same spatial system (in this case our simple x axis), but which are otherwise unrelated:
+First, we create three data sets that all refer to the same spatial system
+(in this case our simple x axis), but which are otherwise unrelated:
 
 ```{r, message = FALSE}
 set.seed(2)
@@ -102,13 +106,19 @@ Finally, we can plot the three data sets in context while keeping their super im
 We can also highlight the *crazy outlier* of the class **c** within **var3**:
 
 ```{r, message = FALSE, fig.width = 7, fig.asp = 9/16}
+clr_1 <- viridis::viridis(4)
+clr_3 <- RColorBrewer::brewer.pal(3,'Set1')
+
 ggplot(data1, aes(x,y))+
   geom_vline(xintercept = -1.08, color = rgb(0,0,0,.5))+
-  geom_line(aes(color = var1))+
+  geom_point(aes(color = var1))+
   geom_line_var2(data = data2, aes(var2 = var2, group = var2))+
-  geom_line_var3(data = data3, aes(var3 = var3))+
-  scale_var3_manual(values = RColorBrewer::brewer.pal(3,'Set1')) +
-  guides(var2 = guide_colourbar_var2(barheight = unit(9,'pt')))+
+  geom_point_var3(data = data3, aes(var3_f = var3), 
+                  shape = 21, size = 2.5,alpha = .8)+
+  scale_color_manual(values = clr_1)+
+  scale_var3_f_manual(values = clr_3) +
+  guides(var2 = guide_colourbar_var2(barheight = unit(9,'pt')),
+         var3_f = guide_legend(override.aes = list(fill = clr_3)))+
   facet_grid(var~.,scales = 'free')+
   theme(legend.position = 'bottom')
 ```
