@@ -170,7 +170,7 @@ factory_geom_point <- function(aes_name){
     default.unit = "line",
     reverse = FALSE,
     order = 0,
-    available_aes = c("colour", "color", "fill", aes_name),
+    available_aes = c("colour", "color", "fill", str_c(aes_name,c('','_c','_f'))),
 
     ...) {
 
