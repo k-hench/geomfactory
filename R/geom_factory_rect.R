@@ -64,8 +64,6 @@ factory_geom_rect <- function(aes_name){
                           aesthetics <- setdiff(
                             names(data), c("x", "y", "xmin", "xmax", "ymin", "ymax")
                           )
-                          print(names(data))
-                          print(aesthetics)
 
                           polys <- lapply(split(data, seq_len(nrow(data))), function(row) {
                             poly <- ggplot2:::rect_to_poly(row$xmin, row$xmax, row$ymin, row$ymax)
