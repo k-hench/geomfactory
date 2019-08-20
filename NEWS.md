@@ -1,3 +1,7 @@
+# geomfactory 0.0.3.1
+
+* adding factory for ggforce::geom_rect().
+
 # geomfactory 0.0.3.0
 
 * adding factory for ggforce::geom_shape().

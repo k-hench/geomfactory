@@ -2,6 +2,11 @@
   cli::rule( center = str_c("Welcome to", crayon::blue("geomfactory")))
 }
 
+# Helper to parse the aesthetics
+#
+# @keyword internal
+prep_aes <- function(...){aes(...)}
+
 #' Create an alternative color aesthetic
 #'
 #' \code{factory_geom_line} is the factory function for the geom_line.

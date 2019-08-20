@@ -42,8 +42,6 @@ factory_geom_point <- function(aes_name){
     )
   }
 
-  prep_aes <- function(...){aes(...)}
-
   aes_defaults <- tibble( shape = 19, size = 1.5,
           aes_c = rgb(0,0,0),
           aes_f = rgb(0,0,0),

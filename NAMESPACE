@@ -2,4 +2,6 @@
 
 export(factory_geom_line)
 export(factory_geom_point)
+export(factory_geom_rect)
 export(factory_geom_shape)
+importFrom(grid,grobTree)

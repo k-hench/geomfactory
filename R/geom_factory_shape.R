@@ -40,8 +40,6 @@ factory_geom_shape <- function(aes_name){
     )
   }
 
-  prep_aes <- function(...){aes(...)}
-
   aes_defaults <- tibble( size = .5,
                           aes_c = rgb(0,0,0),
                           aes_f = '#D3D3D3',
@@ -57,7 +55,7 @@ factory_geom_shape <- function(aes_name){
                        if (n == 1 && expand == 0) {
                          return(zeroGrob())
                        }
-                       print(head(data))
+
                        munched <- coord_munch(coord, data, panel_params)
                        munched <- munched[order(munched$group), ]
                        if (!is.integer(munched$group)) {
@@ -85,8 +83,6 @@ factory_geom_shape <- function(aes_name){
                      extra_params = c('expand', 'radius')
 
   )
-
-
 
   scale_alt_c_manual <<- function (..., values, aesthetics = aes_c){
     manual_scale_alt(aesthetics, values, ...)

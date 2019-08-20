@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • geomfactory</title>
+<title>Create an alternative color aesthetic for geom_rect — factory_geom_rect • geomfactory</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Create an alternative color aesthetic for geom_rect — factory_geom_rect" />
+
+<meta property="og:description" content="Create an alternative color aesthetic for geom_rect" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -60,7 +62,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -116,52 +118,48 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/k-hench/geomfactory/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Create an alternative color aesthetic for geom_rect</h1>
+    <small class="dont-index">Source: <a href='https://github.com/k-hench/geomfactory/blob/master/R/geom_factory_rect.R'><code>R/geom_factory_rect.R</code></a></small>
+    <div class="hidden name"><code>factory_geom_rect.Rd</code></div>
     </div>
 
-    <div id="geomfactory-0-0-3-1" class="section level1">
-<h1 class="page-header">
-<a href="#geomfactory-0-0-3-1" class="anchor"></a>geomfactory 0.0.3.1</h1>
-<ul>
-<li>adding factory for ggforce::geom_rect().</li>
-</ul>
-</div>
-    <div id="geomfactory-0-0-3-0" class="section level1">
-<h1 class="page-header">
-<a href="#geomfactory-0-0-3-0" class="anchor"></a>geomfactory 0.0.3.0</h1>
-<ul>
-<li>adding factory for ggforce::geom_shape().</li>
-</ul>
-</div>
-    <div id="geomfactory-0-0-2-0" class="section level1">
-<h1 class="page-header">
-<a href="#geomfactory-0-0-2-0" class="anchor"></a>geomfactory 0.0.2.0</h1>
-<ul>
-<li>adding factory for geom_point().</li>
-</ul>
-</div>
-    <div id="geomfactory-0-0-1-0" class="section level1">
-<h1 class="page-header">
-<a href="#geomfactory-0-0-1-0" class="anchor"></a>geomfactory 0.0.1.0</h1>
-<ul>
-<li>geomfactory is released to the wild.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    
+    <p>Create an alternative color aesthetic for geom_rect</p>
+    
+    </div>
 
+    <pre class="usage"><span class='fu'>factory_geom_rect</span>(<span class='no'>aes_name</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>aes_name</th>
+      <td><p>string skalar, the name of the new geom</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The newly created aesthetics are then <code>test_c</code> (color) and <code>test_f</code> (fill).</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>factory_geom_rect</span>(<span class='st'>'var3'</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: object 'geom_rect_alt' not found</span></div><div class='output co'>#&gt; <span class='warning'>Warning: object 'GeomRect_alt' not found</span></div><div class='output co'>#&gt; <span class='warning'>Warning: object 'scale_alt_c_manual' not found</span></div><div class='output co'>#&gt; <span class='warning'>Warning: object 'scale_alt_f_manual' not found</span></div><div class='output co'>#&gt; <span class='warning'>Warning: object 'scale_alt_c_continuous' not found</span></div><div class='output co'>#&gt; <span class='warning'>Warning: object 'scale_alt_f_continuous' not found</span></div><div class='output co'>#&gt; <span class='warning'>Warning: object 'guide_colourbar_alt' not found</span></div><div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#geomfactory-0-0-3-1">0.0.3.1</a></li>
-        <li><a href="#geomfactory-0-0-3-0">0.0.3.0</a></li>
-        <li><a href="#geomfactory-0-0-2-0">0.0.2.0</a></li>
-        <li><a href="#geomfactory-0-0-1-0">0.0.1.0</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
+  </div>
 </div>
 
 
